@@ -1,0 +1,20 @@
+# include <stdio.h>
+# include <stdlib.h>
+
+int M(int n,int l,int d)
+{int count=0;
+    if(l==d)
+return 1;
+    for(int i=1;i<=(n-(d-l));i++)
+    {
+        count+=M(n-i,l+1,d);
+    }
+    return count;
+
+}
+int main()
+{
+
+int t=M(8,2,3);
+printf("%d",t);
+}
