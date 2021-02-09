@@ -1,0 +1,31 @@
+# include <stdio.h>
+# include <stdlib.h>
+# include <string.h>
+char* fibonacci(int n)
+{
+  if(n==1)
+  { char a[]="a";
+      char *p;
+      p=a;
+      printf("%s",p);
+      return p;
+  }
+  if(n==2)
+  {char b[]="bc";
+    char *p;
+    p=b;
+    printf("%s",p);
+    return p;
+  }
+
+    char *p;
+    p= strcat(fibonacci(n-1),fibonacci(n-2));
+    return p;
+}
+int main()
+{int n;
+scanf("%d",&n);
+
+fibonacci(n);
+
+}
