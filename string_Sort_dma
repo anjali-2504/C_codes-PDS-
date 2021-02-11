@@ -1,0 +1,45 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include  <string.h>
+
+
+
+void dict(char **str,int man,int MAY)
+{char temp[MAY];
+
+    for (int i = 0; i < man; ++i)
+     {
+      for (int j = i + 1; j < man; ++j)
+        {
+
+         // swapping strings if they are not in the lexicographical order
+         if (strcmp(str[i], str[j]) > 0)
+            {
+            strcpy(temp, str[i]);
+            strcpy(str[i], str[j]);
+            strcpy(str[j], temp);
+            }
+        }
+    }
+    for(int i=0;i<man;i++)
+  puts(str[i]);
+}
+char ** ptr;
+# define MAXY 100
+# define maxn 6
+main()
+{char dictionary[MAXY];
+ptr=(char **)malloc(maxn*sizeof(char*));
+for(int i=0;i<maxn;i++)
+{   //char* word;
+    //word=(char*)malloc(maxy*sizeof(char));
+    gets(dictionary);
+    ptr[i]=(char*)malloc((strlen(dictionary)+1)*sizeof(char));
+    strcpy(ptr[i],dictionary);
+}
+printf("Before sorting:\n");
+ for (int i=0; i<maxn; i++) printf("ptr[%d] = %s \n",i, ptr[i]);
+ printf("After sorting:\n");
+ dict(ptr,maxn,MAXY);
+ return 0;
+}
