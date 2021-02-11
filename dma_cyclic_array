@@ -1,0 +1,17 @@
+#include <stdio.h>
+#include <stdlib.h>
+void  cyclic(int arr[],unsigned int n, size , unsigned int n, shift)
+{
+    int *ptr;
+    ptr=(int*)malloc(size* sizeof(int));
+    for(int i=0;i<size;i++)
+        ptr[(i+shift)%size]=arr[i];
+     for(int i=0;i<size;i++)
+        printf("%d ",ptr[i]);
+
+}
+main()
+{
+int array[]={3,4,8,6,9,2,1};
+cyclic(array,7,3);
+}
