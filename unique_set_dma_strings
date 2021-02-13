@@ -1,0 +1,82 @@
+# include <stdio.h>
+# include <string.h>
+# include <stdlib.h>
+void dict(char **str,int man,int MAY)
+{char temp[MAY];
+
+    for (int i = 0; i < man; ++i)
+     {
+      for (int j = i + 1; j < man; ++j)
+        {
+         if (strcmp(str[i], str[j]) > 0)
+            {
+            strcpy(temp, str[i]);
+            strcpy(str[i], str[j]);
+            strcpy(str[j], temp);
+            }
+        }
+    }
+
+}
+int k=0;
+char **unique_set;
+
+
+void unique(char **s,int l,int d )
+{
+   if(d==l)
+    {
+    unique_set[k]=(char*)malloc((strlen(s[l])+1)*sizeof(char));
+    strcpy(unique_set[k],s[l]);
+    }
+   else
+    {
+    for(int i=l;i<d;i++)
+     {
+         if(strcmp(s[i],s[i+1])==0&&i+1==d)
+           {   unique_set[k]=(char*)malloc((strlen(s[i+1])+1)*sizeof(char));
+               strcpy(unique_set[k],s[i+1]);
+               printf("demo: %s\n",unique_set[k]);
+               k++;
+           }
+
+         else if(strcmp(s[i],s[i+1])!=0)
+            {unique_set[k]=(char*)malloc((strlen(s[i])+1)*sizeof(char));
+              strcpy(unique_set[k],s[i]);
+              //printf("demo1: %s\n",unique_set[k]);
+                k++;
+                unique(s,i+1,d);
+                break;
+            }
+     }
+    }
+
+}
+# define maxx 8
+# define maxy 10
+int main()
+{
+char **ptr;
+char words[maxy];
+ptr=(char**)malloc(maxx*sizeof(char*));
+for(int i=0;i<maxx;i++)
+{
+    gets(words);
+    ptr[i]=(char*)malloc((strlen(words)+1)*sizeof(char));
+    strcpy(ptr[i],words);
+    //puts(ptr[i]);
+    //printf("%d",i);
+}
+
+dict(ptr,maxx,maxy);
+unique_set=(char**)malloc(maxx*sizeof(char*));
+
+
+unique(ptr,0,maxx-1);
+
+for(int i=0;i<maxx;i++)
+{
+puts(unique_set[i]);
+
+}
+}
